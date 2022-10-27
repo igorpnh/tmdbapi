@@ -52,13 +52,16 @@ export default function Home() {
           </div>
 
 
-          <ul >
+          <ul>
             {movieList.map(item => (
-              <li className={styles.infos}>
+              <li 
+              key={item.id}
+              className={styles.infos}>
                 <a  href={`/movie/${item.id}`}>
                   <img
                     src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
                     width="100%"
+                    alt="Poster filme"
                   />
                   <p>{item.title}</p>
                 </a>
