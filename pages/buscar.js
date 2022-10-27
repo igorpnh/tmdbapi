@@ -1,9 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { baseUrl, apiKey } from '../lib/configApi';
-
 import { useState } from 'react';
-
 import styles from '../styles/Home.module.css';
 
 export default function Buscar() {
@@ -20,14 +18,6 @@ export default function Buscar() {
       setSearchText('')
     }
   }
-
-  document.addEventListener("keypress", function(e){
-    if(e.key === 'Enter') {
-      var btn = document.querySelector("#btn-submit");
-
-      btn.click();
-    }
-  })
 
 
   return (
