@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { baseUrl, apiKey } from '../lib/configApi';
 
 import { useState } from 'react';
 
@@ -11,13 +12,23 @@ export default function Home() {
 
   const handleSearch = async () => {
     if (searchText !== '') {
-      const result = await fetch(`http://localhost:3000/api/busca?q=${searchText}`)
+      const url = `${baseUrl}/search/movie/?api_key=${apiKey}&language=pt-BR&query=${searchText}`
+      const result = await fetch(url)
       const json = await result.json();
 
-      setMovieList(json.list)
+      setMovieList(json.results)
       setSearchText('')
     }
   }
+  
+  document.addEventListener("keypress", function(e){
+    if(e.key === 'Enter') {
+      var btn = document.querySelector("#btn-submit");
+
+      btn.click();
+    }
+  })
+
 
   return (
     <div className={styles.container}>
@@ -44,30 +55,31 @@ export default function Home() {
             className={styles.input}
           />
           <button
+            id="btn-submit"
             className={styles.btn}
             onClick={handleSearch}
           >
             Buscar
           </button>
-          </div>
+        </div>
 
 
-          <ul>
-            {movieList.map(item => (
-              <li 
+        <ul>
+          {movieList.map(item => (
+            <li
               key={item.id}
               className={styles.infos}>
-                <a  href={`/movie/${item.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-                    width="100%"
-                    alt="Poster filme"
-                  />
-                  <p>{item.title}</p>
-                </a>
-              </li>
-            ))}
-          </ul>
+              <a href={`/movie/${item.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
+                  width="100%"
+                  alt="Poster filme"
+                />
+                <p>{item.title}</p>
+              </a>
+            </li>
+          ))}
+        </ul>
       </main>
     </div>
   )

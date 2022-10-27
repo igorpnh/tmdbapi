@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+import {baseUrl, apiKey} from '../lib/configApi';
 
 export default function Home({ list }) {
   return (
@@ -42,12 +43,17 @@ export default function Home({ list }) {
 //página será renderizada como serverside, tudo que for serverside só é renderizado 1 única vez. 
 //os componentes acima /\ são renderizados como react normal
 export async function getServerSideProps() {
-  const res = await fetch(`http://localhost:3000/api/trending`);
-  const json = await res.json();
+  const url = `${baseUrl}/trending/movie/week?api_key=${apiKey}&language=pt-BR`
+  const response = await fetch(url);
+  const list = await response.json();
+  console.log(list)
 
   return {
     props: {
-      list: json.list
+      list: list === false ? [] : list.results
     }
+
+    
   }
+  console.log(list)
 }

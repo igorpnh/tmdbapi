@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { baseUrl, apiKey } from '../../lib/configApi';
 import styles from '../../styles/Home.module.css';
 
 export default function MovieItem({ info }) {
@@ -49,14 +50,13 @@ export default function MovieItem({ info }) {
 //página será renderizada como serverside, tudo que for serverside só é renderizado 1 única vez. 
 //os componentes acima /\ são renderizados como react normal
 export async function getServerSideProps(context) {
-
-    const res = await fetch(`http://localhost:3000/api/movie/${context.params.id}`); ''
+const url = `${baseUrl}/movie/${context.params.id}?api_key=${apiKey}&language=pt-BR`;
+    const res = await fetch(url);
     const json = await res.json();
-    console.log(json);
 
     return {
         props: {
-            info: json.info
+            info: json
         }
     }
 }
