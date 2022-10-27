@@ -6,7 +6,7 @@ import { useState } from 'react';
 
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+export default function Buscar() {
   const [searchText, setSearchText] = useState('')
   const [movieList, setMovieList] = useState([]);
 
@@ -20,7 +20,7 @@ export default function Home() {
       setSearchText('')
     }
   }
-  
+
   document.addEventListener("keypress", function(e){
     if(e.key === 'Enter') {
       var btn = document.querySelector("#btn-submit");
