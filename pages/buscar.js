@@ -10,13 +10,13 @@ export default function Buscar() {
 
   const handleSearch = async () => {
     if (searchText !== '') {
-      const url = `${baseUrl}/search/movie/?api_key=${apiKey}&language=pt-BR&query=${searchText}`
+      const url = `${baseUrl}/search/movie?api_key=${apiKey}&language=pt-BR&query=${searchText}`
       const result = await fetch(url)
       const json = await result.json();
 
       setMovieList(json.results)
-      setSearchText('')
     }
+    setSearchText('');
   }
 
 
