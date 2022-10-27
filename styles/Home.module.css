@@ -68,6 +68,13 @@
   cursor: pointer;
 }
 
+.btn:hover {
+  background: black;
+  color: #ccc;
+  border: none;
+  transition: 200ms;
+}
+
 .input {
   width: 18rem;
   background: white;
@@ -98,6 +105,7 @@
   background: black;
   animation: slide 2000ms normal;
   overflow: hidden;
+  color:white;
 
 }
 /*END ID STYLES*/
@@ -129,8 +137,6 @@
   .btn:hover {
     background: #ccc;
     color: black;
-    border: none;
-    transition: 200ms;
   }
 
   .input {

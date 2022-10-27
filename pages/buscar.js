@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { baseUrl, apiKey } from '../lib/configApi';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from '../styles/Home.module.css';
 
 export default function Buscar() {
@@ -18,7 +18,6 @@ export default function Buscar() {
     }
     setSearchText('');
   }
-
 
   return (
     <div className={styles.container}>
@@ -45,7 +44,6 @@ export default function Buscar() {
             className={styles.input}
           />
           <button
-            id="btn-submit"
             className={styles.btn}
             onClick={handleSearch}
           >
